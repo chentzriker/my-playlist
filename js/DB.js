@@ -18,6 +18,8 @@ class DataBase {
         if (USER_PLAYLIST === 404) {
             return 404;
         }
+        USER_PLAYLIST.addOneToCountSongsId();
+        song.id = USER_PLAYLIST.countSongsId;
         USER_PLAYLIST.push(song);
         localStorage.setItem("playlists", JSON.stringify(USER_PLAYLIST));
         return 200;
@@ -62,12 +64,23 @@ class DataBase {
             return 202;
         }
     }
+    // getPlaylistCountId(userId) {
+    //     const USER_PLAYLIST = this.getPlaylistById(userId);
+
+    // }
 }
-DB = new DataBase();
 class Playlist {
-    constructor(userId, countSongsId = 0, songs = []) {
+    constructor(userId, _countSongsId = 0, songs = []) {
         this.userId = userId;
-        this.countSongsId = countSongsId;
+        this._countSongsId = _countSongsId;
         this.songs = songs;
     }
+    get countSongsId() {
+        return this._countSongsId;
+    }
+    addOneToCountSongsId() {
+        this._countSongsId++;
+    }
 }
+
+DB = new DataBase();
