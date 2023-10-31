@@ -4,7 +4,9 @@ let clon;
 let temp;
 
 function showContent(i) {
+    //before moving to the playlist
     if (i === 2) {
+        //checks if the fields are valid before going to the server
         if (!checkValidtion()) {
             alert("one field or more is wrong")
             return
