@@ -30,24 +30,22 @@
                 <h1 id="form-head">sign up</h1>
             </legend>
             <label for="username">Username-email</label><br>
-            <input type="email" id="username" name="username" autocomplete="username"><br><br>
-            <div class="tooltip">
+            <input type="text" id="Username" name="Username" autocomplete="username"><br><br>
+            <!-- <div class="tooltip"> -->
                 <label for="password">Password</label><br>
-                <input type="password" id="password" name="password" autocomplete="new-password"><br><br>
-                <p class="tooltiptext">Password should contain: <br> 1. at least one uppercase letter <br> 2.at
+                <input type="password" id="Password" name="Password" autocomplete="new-password"><br><br>
+                <!-- <p class="tooltiptext">Password should contain: <br> 1. at least one uppercase letter <br> 2.at
                     least one lowercase letter<br> 3.at least one digit <br> 4.should be more than 4 character</p>
-            </div>
+            </div> -->
             <label for="confirm">Confirm password</label><br>
             <input type="password" id="confirm" name="confirm-password" autocomplete="confirm-password"><br><br>
-            <label for="age">Age</label><br>
-            <input type="number" id="age" name="age" autocomplete="age"><br><br>
             <button class="movePage" onclick="showContent(2)">sign up</button> <br><br>
             <a onclick="showContent(0)">already have an account</a>
         </fieldset>
     </template>
-    <template id="game">
+    <template id="playlist">
         <fieldset>
-            <button id="logout" class="movePage" onclick="showContent(0)">log out</button>
+         <button id="logout" class="movePage" onclick="showContent(0)">log out</button>
         </fieldset>
     </template>
 

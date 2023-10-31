@@ -1,21 +1,31 @@
-let templates;
+let content;
 let clon;
 let temp;
 
 function showContent(i) {
-    templates = document.getElementById("content").children
-    console.log(templates)
-    for (const element of templates) {
-        console.log('element: ', element);
-        element.parentNode.removeChild(element)
+    if (i === 2) {
+        if (!checkValidtion()) {
+            alert("one field or more is wrong")
+            return
+        }
     }
+    content = document.getElementById("content")
+    content.innerHTML = ""
     temp = document.getElementsByTagName("template")[i];
     clon = temp.content.cloneNode(true);
     console.log(clon)
-    document.getElementById("content").appendChild(clon);
-    if (i === 2) {
-        countBtn = document.getElementById("countBtn")
-        countBtn.addEventListener("click", add)
-        counter = document.getElementById("counter")
-    }
+    content.appendChild(clon);
 }
+
+function checkValidtion() {
+    username = document.getElementById("Username").value
+    password = document.getElementById("Password").value
+    if (!username || !password) {
+        return false
+    }
+    if (password.length < 5 || username.length < 4) {
+        return false
+    }
+    return true
+}
+
