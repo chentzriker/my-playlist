@@ -1,21 +1,28 @@
-let templates;
+
+let content;
 let clon;
 let temp;
 
 function showContent(i) {
-    templates = document.getElementById("content").children
-    console.log(templates)
-    for (const element of templates) {
-        console.log('element: ', element);
-        element.parentNode.removeChild(element)
-    }
+    content = document.getElementById("content");
+    content.innerHTML = "";
     temp = document.getElementsByTagName("template")[i];
     clon = temp.content.cloneNode(true);
-    console.log(clon)
     document.getElementById("content").appendChild(clon);
-    if (i === 2) {
-        countBtn = document.getElementById("countBtn")
-        countBtn.addEventListener("click", add)
-        counter = document.getElementById("counter")
+}
+
+//adds the user's playlist items to the playlist template tag 
+function loadPlaylist(list) {
+    const UL = document.getElementById("playlist-container");
+    for (let song of list) {
+        let li = document.createElement("li");
+        li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
+        UL.appendChild(li);
     }
+}
+
+function logOut() {
+    const UL = document.getElementById("playlist-container");
+    UL.innerHTML = "";
+    showContent(0);
 }
