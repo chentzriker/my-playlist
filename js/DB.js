@@ -72,7 +72,7 @@ class DataBase {
         let userId = users["idCount"]
         obj.id = userId
         let playlists = this.playlists
-        let newPlaylist = new Playlist(userId, 0, [])
+        let newPlaylist = new Playlist(userId)
         playlists.push(newPlaylist)
         users.users.push(obj)
         users["idCount"] = users["idCount"] + 1
