@@ -36,7 +36,7 @@ function loadPlaylist() {
     const UL = document.getElementById("playlist-container");
     let onload = function () {
         if (this.status === 200) {
-            let list = JSON.parse(this.responseText)
+            let list = this.responseText;
             for (let song of list) {
                 let li = document.createElement("li");
                 li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;

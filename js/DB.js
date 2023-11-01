@@ -2,9 +2,9 @@ class DataBase {
     constructor() {
         this.users = JSON.parse(localStorage.getItem("users")) || { idCount: 1, users: [] };
         this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
-        // if (this.users["users"][0] === undefined) {
-        //     this.addUser(new User("chen", "123456"));
-        // }
+        if (this.users["users"][0] === undefined) {
+            this.addUser(new User("chen", "123456"));
+        }
     }
 
     getUsers() {
@@ -87,8 +87,6 @@ class DataBase {
     addSongToPlaylist(userId, song) {
         const USER_SONGS = this.getSongsListById(userId);
         const USER_PLAYLIST = this.getPlaylistObj(userId);
-        const USER_SONGS = this.getSongsListById(userId);
-        console.log('USER_PLAYLIST: ', USER_PLAYLIST);
         if (USER_PLAYLIST === 404 || USER_SONGS === 404) {
             return 404;
         }
@@ -97,7 +95,7 @@ class DataBase {
         console.log('USER_PLAYLIST.countSongsId: ', USER_PLAYLIST.countSongsId);
         USER_PLAYLIST.songs.push(song);
         console.log('USER_SONGS: ', USER_SONGS);
-        localStorage.setItem("playlists", JSON.stringify(USER_PLAYLIST));
+        localStorage.setItem("playlists", JSON.stringify(this.playlists));
         return 200;
     }
     editSong(userId, songId, key, value) {
@@ -136,7 +134,7 @@ class DataBase {
         }
         else {
             USER_PLAYLIST.splice(index, 1);
-            localStorage.setItem("playlists", JSON.stringify(USER_PLAYLIST));
+            localStorage.setItem("playlists", JSON.stringify(this.playlists));
             return 202;
         }
     }
