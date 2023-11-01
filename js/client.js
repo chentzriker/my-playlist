@@ -6,15 +6,15 @@ function recieveDataFromServer(strObj) {
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
     let onload = function() {
-        console.log(this)
+        console.log(this);
         if (this.status === 200) {
             changeHashId(JSON.parse(this.param).id);
             console.log('this.id: ', this.id);
             console.log('this: ', this);
-            showContent(2)
+            showContent(2);
         }
         else {
-            alert("one field or more is wrong")
+            alert("one field or more is wrong");
         }
     };
     createRequest("POST", "users", "", onload, { "name": username, "password": password });
