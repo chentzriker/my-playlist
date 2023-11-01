@@ -2,7 +2,7 @@ class DataBase {
     constructor() {
         this.users = JSON.parse(localStorage.getItem("users")) || { idCount: 1, users: [] };
         this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
-        if (this.users['users'][0] === undefined) {
+        if (this.users["users"][0] === undefined) {
             this.addUser(new User("chen", "123456"));
         }
     }
