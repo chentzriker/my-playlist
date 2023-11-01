@@ -45,8 +45,8 @@ function loadPlaylist() {
                 button2.addEventListener("click", editSong)
                 button1.textContent = "remove"
                 button2.textContent = "edit"
-                button1.classList.add(song.id)
-                button2.classList.add(song.id)
+                button1.classList.add(song.id, "small-button")
+                button2.classList.add(song.id, "small-button")
                 let li = document.createElement("li");
                 li.innerHTML = "<strong>" + song.title + "</strong>" + "<br/> artist: " + song.artist + "<br/> legth: " + song.length + "<br/>";
                 li.appendChild(button1)
