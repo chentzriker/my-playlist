@@ -75,9 +75,17 @@ class Server {
                 }
             }
         }
-        else if(req.orderType === "DLETE"){
-            if (urlArr[2] === "playlists"){
-                this.removeSongFromPlaylist(parseInt(urlArr[2]),parseInt(req.param))
+        else if (req.orderType === "DELETE") {
+            if (urlArr[2] === "playlists") {
+                let obj = JSON.parse(req.param)
+                console.log( parseInt(obj));
+                if (this.removeSongFromPlaylist(parseInt(urlArr[3]), parseInt(obj)) === 200) {
+                    req.status = 200
+                }
+                else{
+                    req.status = 404
+                }
+
             }
         }
         NET.toClient(req)
@@ -130,8 +138,8 @@ class Server {
     addSongToPlaylistDB(userId, title, artist, length) {
         return DB.addSongToPlaylist(userId, new Song(title, artist, length));
     }
-    removeSongFromPlaylist(userId,songId) {
-        return DB.deleteSong(userId,songId)
+    removeSongFromPlaylist(userId, songId) {
+        return DB.deleteSong(userId, songId)
     }
     editSong() {
 
