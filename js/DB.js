@@ -87,7 +87,6 @@ class DataBase {
     addSongToPlaylist(userId, song) {
         const USER_SONGS = this.getSongsListById(userId);
         const USER_PLAYLIST = this.getPlaylistObj(userId);
-        const USER_SONGS = this.getSongsListById(userId);
         console.log('USER_PLAYLIST: ', USER_PLAYLIST);
         if (USER_PLAYLIST === 404 || USER_SONGS === 404) {
             return 404;
