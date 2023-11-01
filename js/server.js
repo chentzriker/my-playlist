@@ -33,8 +33,21 @@ class song{
 }    
 class Server{
     constructor(){};
+    analyzeRequest(req){
+       req = JSON.parse(req)
+       let urlArr = req.split("/")
+       if (req.orderType === "POST"){
+        if(urlArr[2] === "users"){
+            req.status = checkUserExistence(getUsersArray())
+        }
+       }
+    }
     getUsersArray() {
         return DB.getUsers();
+    }
+
+    checkUserExistence(){
+        
     }
     addUserToDB(name, password) {
         ///FAJAX!! NEEDS TO BE CHANGED LATER!!
@@ -51,6 +64,9 @@ class Server{
             //change fajax textResponse to error
         }
         return ans;//????? needs to return fajax
+    }
+    addSongToPlaylist(){
+
     }
 }    
 
