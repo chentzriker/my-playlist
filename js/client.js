@@ -5,16 +5,19 @@ function recieveDataFromServer(strObj) {
 
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
-    let onload = () => {
+    let onload = function() {
         console.log(this)
         if (this.status === 200) {
+            changeHashId(JSON.parse(this.param).id);
+            console.log('this.id: ', this.id);
+            console.log('this: ', this);
             showContent(2)
         }
         else {
             alert("one field or more is wrong")
         }
     };
-    createRequest("POST", "users", "", onload, {"name": username, "password": password });
+    createRequest("POST", "users", "", onload, { "name": username, "password": password });
     //see if the server returnd that this user Exists or not
     //load the user page
 }
@@ -23,5 +26,5 @@ function createRequest(orderType, location, userId, onload, param = undefined) {
     let request = new FXMLHttpRequest()
     request.open(orderType, "/my-playlist.il.API/" + location + "/" + userId);
     request.onload = onload;
-    request.send(JSON.stringify(param));
+    request.send(JSON.stringify (param));
 }

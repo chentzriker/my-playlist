@@ -2,7 +2,9 @@ class DataBase {
     constructor() {
         this.users = JSON.parse(localStorage.getItem("users")) || { idCount: 1, users: [] };
         this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
-
+        if (this.users[0] === undefined) {
+            this.addUser(new User("chen", "123456"));
+        }
     }
 
     getUsers() {
@@ -21,6 +23,16 @@ class DataBase {
         localStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("playlists", JSON.stringify(playlists));
         return 200;
+    }
+    getUserId(name, password) {
+        //finds the user and returns its id.
+        const USERS = this.getUsers();
+        for(let user of USERS) {
+            if(user.name === name && user.password === password) {
+                return user.id;
+            }
+        }
+        return 404;
     }
 
     editUser(userId, key, value) {

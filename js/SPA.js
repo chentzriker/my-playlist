@@ -70,3 +70,8 @@ function checkValidtion(username, password) {
     return true
 }
 
+function changeHashId(id) {
+    let hash = location.hash = "";
+    window.location.hash += id;
+}
+
