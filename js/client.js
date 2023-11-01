@@ -6,11 +6,8 @@ function recieveDataFromServer(strObj) {
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
     let onload = function () {
-        console.log(this);
         if (this.status === 200) {
             changeHashId(JSON.parse(this.param).id);
-            console.log('this.id: ', this.id);
-            console.log('this: ', this);
             showContent(2);
         }
         else {
@@ -39,9 +36,9 @@ function addSongToUserPlaylist() {
     document.getElementById("newSongForm").style.display = "none";
     document.getElementById("addSong").style.display = "block";
     let onload = function () {
-        console.log(this);
         if (this.status === 200) {
             alert("your song was added successfully:) check out your updated playlist!!")
+            // loadPlaylist()
         }
         else {
             alert("something went wrong:(");

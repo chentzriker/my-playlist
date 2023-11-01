@@ -35,7 +35,6 @@ class Song {
 class Server {
     constructor() { };
     analyzeRequest(req) {
-        console.log('req:!!!!!!!!!!!!!!! ', req);
         let urlArr = req.url.split("/")
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
@@ -55,10 +54,6 @@ class Server {
             }
             else {
                 let obj = JSON.parse(req.param);
-                console.log('obj: ', obj);
-                console.log("inside else of fajax function");
-
-                console.log('req: ', req);
                 req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length);
                 if (req.status === 404) {
                     req.responseText = "ERROR! failed to add song. playlist does not exist. contact customer service for help."
@@ -71,7 +66,6 @@ class Server {
         }
         else if (req.orderType === "GET") {
             if (urlArr[2] === "playlists") {
-                console.log("got here");
                 if (this.getplaylist(urlArr[3]) === 404) {
                     req.status = 404
                 }
@@ -79,6 +73,11 @@ class Server {
                     req.responseText = this.getplaylist(urlArr[3])
                     req.status = 200
                 }
+            }
+        }
+        else if(req.orderType === "DLETE"){
+            if (urlArr[2] === "playlists"){
+                this.removeSongFromPlaylist(parseInt(urlArr[2]),parseInt(req.param))
             }
         }
         NET.toClient(req)
@@ -131,8 +130,8 @@ class Server {
     addSongToPlaylistDB(userId, title, artist, length) {
         return DB.addSongToPlaylist(userId, new Song(title, artist, length));
     }
-    removeSongToPlaylist() {
-
+    removeSongFromPlaylist(userId,songId) {
+        return DB.deleteSong(userId,songId)
     }
     editSong() {
 

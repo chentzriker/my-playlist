@@ -98,6 +98,7 @@ class DataBase {
         localStorage.setItem("playlists", JSON.stringify(this.playlists));
         return 200;
     }
+    
     editSong(userId, songId, key, value) {
         const USER_PLAYLIST = this.getSongsListById(userId);
         let success = false;
@@ -118,6 +119,7 @@ class DataBase {
             return success;
         }
     }
+    //need to change to finding the song by the name
     deleteSong(userId, songId) {
         const USER_PLAYLIST = this.getSongsListById(userId);
         let index = -1;
