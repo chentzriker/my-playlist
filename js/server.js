@@ -18,41 +18,71 @@
 // if fails, returns 404. otherwise, 200.
 // * editSong(userId, songId, key, value)
 // * deleteSong(userId, songId) 
-class User{
-    constructor(name,password){
+class User {
+    constructor(name, password) {
         this.name = name
         this.password = password
-    }    
-}    
-class song{
-    constructor(title, artist, length){
+    }
+}
+class song {
+    constructor(title, artist, length) {
         this.title = title;
         this.artist = artist;
         this.length = length;
-    }    
-}    
-class Server{
-    constructor(){};
-    analyzeRequest(req){
-       req = JSON.parse(req)
-       let urlArr = req.split("/")
-       if (req.orderType === "POST"){
-        if(urlArr[2] === "users"){
-            req.status = checkUserExistence(getUsersArray())
+    }
+}
+class Server {
+    constructor() { };
+    analyzeRequest(req) {
+        req = JSON.parse(req)
+        let urlArr = req.split("/")
+        if (req.orderType === "POST") {
+            if (urlArr[2] === "users") {
+                if (checkValidtion(param.name, param.password)) {
+                    try {
+                        req.status = checkUserExistence(getUsersArray(), req.param)
+                    }
+                    catch (e) {
+                        req.status = 404
+                        req.responseText = e.message
+                    }
+                }
+            }
         }
-       }
+        toClient(req)
+    }
+    checkValidtion(username, password) {
+
+        if (!username || !password) {
+            return false
+        }
+        if (password.length < 5 || username.length < 4) {
+            return false
+        }
+        return true
     }
     getUsersArray() {
         return DB.getUsers();
     }
 
-    checkUserExistence(){
-        
+    checkUserExistence(users, client) {
+        if (users.length === 0) {
+            throw new Error("no users")
+        }
+        for (let x of users) {
+            if (x.name === client.name && x.password === client.password) {
+                return 200
+            }
+            else {
+                throw new Error("wrong user name or password")
+            }
+
+        }
     }
     addUserToDB(name, password) {
         ///FAJAX!! NEEDS TO BE CHANGED LATER!!
         const ans = DB.addUser(new User(name, password));
-        if (ans === 404){
+        if (ans === 404) {
             //change fajax textResponse
         }
         return ans;
@@ -65,10 +95,10 @@ class Server{
         }
         return ans;//????? needs to return fajax
     }
-    addSongToPlaylist(){
+    addSongToPlaylist() {
 
     }
-}    
+}
 const SERVER = new Server();
 
 
