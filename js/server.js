@@ -39,9 +39,9 @@ class Server {
             if (urlArr[2] === "users") {
                 console.log("got here");
                 let obj = JSON.parse(req.param)
-                if (checkValidtion(obj.name,obj.password)) {
+                if (this.checkValidtion(obj.name, obj.password)) {
                     try {
-                        req.status = checkUserExistence(getUsersArray(), req.param)
+                        req.status = this.checkUserExistence(this.getUsersArray(), obj)
                     }
                     catch (e) {
                         req.status = 404
@@ -50,8 +50,20 @@ class Server {
                 }
             }
         }
+        else if (req.orderType === "GET") {
+            if (urlArr[2] === "playlists") {
+                if (this.getplaylist(url[3]) === 404) {
+                    req.status = 404
+                }
+                else {
+                    req.responseText = this.getplaylist(url[3])
+                    req.status = 200
+                }
+            }
+        }
         NET.toClient(req)
     }
+
     checkValidtion(username, password) {
 
         if (!username || !password) {
@@ -98,7 +110,16 @@ class Server {
         }
         return ans;//????? needs to return fajax
     }
+    getplaylist(id) {
+        return DB.getPlaylistObj(id);
+    }
     addSongToPlaylist() {
+
+    }
+    removeSongToPlaylist() {
+
+    }
+    editSong() {
 
     }
 }

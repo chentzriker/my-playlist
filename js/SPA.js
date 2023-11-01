@@ -27,16 +27,29 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    sendHTMLLoginRequest(username,password);
+    sendHTMLLoginRequest(username, password);
 }
 
 //adds the user's playlist items to the playlist template tag 
 function loadPlaylist(list) {
+    let onload = function () {
+        if (this.status !== 200) {
+            alert("somthing went wrong")
+            return
+        }
+    }
+    let request = createRequest("GET", "playlists", location.hash.slice(0, 1), onload)
     const UL = document.getElementById("playlist-container");
-    for (let song of list) {
-        let li = document.createElement("li");
-        li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
-        UL.appendChild(li);
+    if (request.status === 200) {
+        let list = request.responseText
+        for (let song of list) {
+            let li = document.createElement("li");
+            li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
+            UL.appendChild(li);
+        }
+    }
+    else {
+        alert("somthing went wrong")
     }
 }
 
