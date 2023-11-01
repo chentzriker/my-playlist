@@ -55,11 +55,12 @@ class Server {
         }
         else if (req.orderType === "GET") {
             if (urlArr[2] === "playlists") {
+                console.log("got here");
                 if (this.getplaylist(urlArr[3]) === 404) {
                     req.status = 404
                 }
                 else {
-                    req.responseText = JSON.stringify(this.getplaylist(url[3]))
+                    req.responseText = this.getplaylist(urlArr[3])
                     req.status = 200
                 }
             }
@@ -109,7 +110,7 @@ class Server {
         return ans;//????? needs to return fajax
     }
     getplaylist(id) {
-        return DB.getPlaylistObj(id);
+        return DB.getSongsListById(id);
     }
     addSongToPlaylist() {
 

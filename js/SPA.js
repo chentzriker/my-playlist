@@ -37,7 +37,7 @@ function loadPlaylist() {
     let onload = function () {
         if (this.status === 200) {
             let list = JSON.parse(this.responseText)
-            for (let song of list.playlist) {
+            for (let song of list) {
                 let li = document.createElement("li");
                 li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
                 UL.appendChild(li);
