@@ -71,11 +71,12 @@ class Server {
         }
         else if (req.orderType === "GET") {
             if (urlArr[2] === "playlists") {
-                if (this.getplaylist(url[3]) === 404) {
+                console.log("got here");
+                if (this.getplaylist(urlArr[3]) === 404) {
                     req.status = 404
                 }
                 else {
-                    req.responseText = this.getplaylist(url[3])
+                    req.responseText = this.getplaylist(urlArr[3])
                     req.status = 200
                 }
             }
@@ -101,17 +102,12 @@ class Server {
         if (users.length === 0) {
             throw new Error("no users")
         }
-        console.log("hellow")
         for (let x of users) {
-            if (x.name === client.name && x.password === client.password) {
+            if (x.name == client.name && x.password == client.password) {
                 return 200
             }
-            else {
-                console.log("hi")
-                throw new Error("wrong user name or password")
-            }
-
         }
+        throw new Error("wrong user name or password")
     }
     addUserToDB(name, password) {
         ///FAJAX!! NEEDS TO BE CHANGED LATER!!
@@ -130,7 +126,7 @@ class Server {
         return ans;//????? needs to return fajax
     }
     getplaylist(id) {
-        return DB.getPlaylistObj(id);
+        return DB.getSongsListById(id);
     }
     addSongToPlaylistDB(userId, title, artist, length) {
         return DB.addSongToPlaylist(userId, new Song(title, artist, length));
