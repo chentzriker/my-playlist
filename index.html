@@ -47,15 +47,26 @@
     </template>
     <template id="playlist">
         <fieldset>
+            <form onsubmit="addSongToUserPlaylist()"  id="newSongForm" method="POST">
+                <label for="title">title:</label>
+                <input type="text" name="title" id="title">
+                <label for="artist">artist:</label>
+                <input type="text" name="artist" id="artist">
+                <label for="length">length:</label>
+                <input type="text" name="length" id="length">
+                <input type="submit" value="add!">
+            </form>
+            <button id="addSong" class="addSong" onclick="showSongForm()">add song</button>
             <button id="showPlaylist" onclick="loadPlaylist()">show my playlist</button>
             <h2>your playlist:</h2>
             <ul id="playlist-container">
             </ul>
             <button id="logout" class="movePage" onclick="logOut()">log out</button>
+
         </fieldset>
     </template>
     <script src="./js/SPA.js"></script>
-   
+
     <script src="./js/client.js"></script>
     <script src="./js/FAJAX.js"></script>
     <script src="./js/network.js"></script>

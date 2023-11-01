@@ -25,7 +25,7 @@ class User {
         this.password = password
     }
 }
-class song {
+class Song {
     constructor(title, artist, length) {
         this.title = title;
         this.artist = artist;
@@ -35,6 +35,7 @@ class song {
 class Server {
     constructor() { };
     analyzeRequest(req) {
+        console.log('req:!!!!!!!!!!!!!!! ', req);
         let urlArr = req.url.split("/")
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
@@ -51,6 +52,21 @@ class Server {
                     }
                 }
                 req.param = JSON.stringify(obj);
+            }
+            else {
+                let obj = JSON.parse(req.param);
+                console.log('obj: ', obj);
+                console.log("inside else of fajax function");
+
+                console.log('req: ', req);
+                req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length);
+                if (req.status === 404) {
+                    req.responseText = "ERROR! failed to add song. playlist does not exist. contact customer service for help."
+                }
+                // else {
+                //     // obj.id = DB.getSongID()
+
+                // }
             }
         }
         else if (req.orderType === "GET") {
@@ -116,8 +132,8 @@ class Server {
     getplaylist(id) {
         return DB.getPlaylistObj(id);
     }
-    addSongToPlaylist() {
-
+    addSongToPlaylistDB(userId, title, artist, length) {
+        return DB.addSongToPlaylist(userId, new Song(title, artist, length));
     }
     removeSongToPlaylist() {
 

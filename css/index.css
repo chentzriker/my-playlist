@@ -1,3 +1,7 @@
 fieldset {
     margin: 0 auto;
 }
+#newSongForm {
+    display:none;
+    flex-direction: column;
+}

@@ -5,7 +5,7 @@ function recieveDataFromServer(strObj) {
 
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
-    let onload = function() {
+    let onload = function () {
         console.log(this);
         if (this.status === 200) {
             changeHashId(JSON.parse(this.param).id);
@@ -26,5 +26,30 @@ function createRequest(orderType, location, userId, onload, param = undefined) {
     let request = new FXMLHttpRequest()
     request.open(orderType, "/my-playlist.il.API/" + location + "/" + userId);
     request.onload = onload;
-    request.send(JSON.stringify (param));
+    request.send(JSON.stringify(param));
+}
+
+
+function showSongForm() {
+    document.getElementById("newSongForm").style.display = "flex";
+    document.getElementById("addSong").style.display = "none";
+}
+function addSongToUserPlaylist() {
+    event.preventDefault();
+    document.getElementById("newSongForm").style.display = "none";
+    document.getElementById("addSong").style.display = "block";
+    let onload = function () {
+        console.log(this);
+        if (this.status === 200) {
+            alert("your song was added successfully:) check out your updated playlist!!")
+        }
+        else {
+            alert("something went wrong:(");
+        }
+    };
+    const title = document.getElementById("title").value;
+    const artist = document.getElementById("artist").value;
+    const length = document.getElementById("length").value;
+
+    createRequest("POST", "playlists", parseInt(location.hash.slice(1)), onload, { "title": title, "artist": artist, "length": length });
 }

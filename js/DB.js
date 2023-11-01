@@ -58,16 +58,25 @@ class DataBase {
         return 404
     }
     getSongsListById(id) {
+        console.log("inside DATABASE");
+        console.log('id: ', id);
+        this.playlists = JSON.parse(localStorage.getItem("playlists"));
+        console.log('this.playlists: ', this.playlists);
         for (let playlist of this.playlists) {
-            if (playlist.userId === id) {
+            console.log('playlist.userId: ', playlist.userId);
+            console.log('id: ', id);
+            if (playlist.userId === parseInt(id)) {
+                console.log("hi");
                 return playlist.songs;
             }
         }
+
+        console.log("oops")
         return 404;
     }
     getPlaylistObj(id) {
         for (let playlist of this.playlists) {
-            if (playlist.userId === id) {
+            if (playlist.userId === parseInt(id)) {
                 return playlist;
             }
         }
@@ -75,18 +84,17 @@ class DataBase {
     }
     //this method adds a new song it gets to the user's playlist
     addSongToPlaylist(userId, song) {
-        const USER_SONGS = this.getSongsListById(userId);
-        console.log('USER_SONGS: ', USER_SONGS);
-        const USER_PLAYLIST = this.getPlaylistObj(userId);
-        console.log('USER_PLAYLIST: ', USER_PLAYLIST);
         console.log(this);
+        const USER_PLAYLIST = this.getPlaylistObj(userId);
+        const USER_SONGS = this.getSongsListById(userId);
+        console.log('USER_PLAYLIST: ', USER_PLAYLIST);
         if (USER_PLAYLIST === 404 || USER_SONGS === 404) {
             return 404;
         }
         USER_PLAYLIST.countSongsId++;
         song.id = USER_PLAYLIST.countSongsId;
         console.log('USER_PLAYLIST.countSongsId: ', USER_PLAYLIST.countSongsId);
-        USER_SONGS.push(song);
+        USER_PLAYLIST.songs.push(song);
         console.log('USER_SONGS: ', USER_SONGS);
         localStorage.setItem("playlists", JSON.stringify(USER_PLAYLIST));
         return 200;
@@ -143,4 +151,4 @@ class Playlist {
 
 }
 
-DB = new DataBase();
+const DB = new DataBase();
