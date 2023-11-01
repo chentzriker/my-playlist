@@ -38,8 +38,11 @@ function loadPlaylist() {
         if (this.status === 200) {
             let list = JSON.parse(this.responseText)
             for (let song of list) {
+                let button = document.createElement("button")
+                button.addEventListener("click", removeSong)
+                button.textContent = "remove song"
                 let li = document.createElement("li");
-                li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
+                li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/> legth: " + song.length +"<br/>" + button;
                 UL.appendChild(li);
             }
         }
