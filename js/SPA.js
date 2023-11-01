@@ -5,13 +5,13 @@ let temp;
 
 function showContent(i) {
     //before moving to the playlist
-    if (i === 2) {
-        //checks if the fields are valid before going to the server
-        if (!checkValidtion()) {
-            alert("one field or more is wrong")
-            return
-        }
-    }
+    // if (i === 2) {
+    //     //checks if the fields are valid before going to the server
+    //     if (!checkValidtion()) {
+    //         alert("one field or more is wrong")
+    //         return
+    //     }
+    // }
     content = document.getElementById("content")
     content.innerHTML = ""
     temp = document.getElementsByTagName("template")[i];
@@ -19,6 +19,23 @@ function showContent(i) {
     document.getElementById("content").appendChild(clon);
     console.log(clon)
     content.appendChild(clon);
+}
+
+function login() {
+    let username = document.getElementById("Username").value
+    let password = document.getElementById("Password").value
+    if (!checkValidtion(username, password)) {
+        alert("one field or more is wrong")
+        return
+    }
+    //create new FAJAX and send it
+    let request = new FXMLHttpRequest()
+    request.open("POST", "my-playlist.il/users")
+    request.onload  =function(){}
+    request.send(JSON.stringify({ name: username, password: password }))
+    //see if the server returnd that this user Exists or not
+    //load the user page
+    showContent(2)
 }
 
 //adds the user's playlist items to the playlist template tag 
@@ -37,9 +54,8 @@ function logOut() {
     showContent(0);
 }
 
-function checkValidtion() {
-    username = document.getElementById("Username").value
-    password = document.getElementById("Password").value
+function checkValidtion(username, password) {
+
     if (!username || !password) {
         return false
     }
