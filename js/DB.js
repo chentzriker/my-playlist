@@ -98,7 +98,7 @@ class DataBase {
         localStorage.setItem("playlists", JSON.stringify(this.playlists));
         return 200;
     }
-    
+
     editSong(userId, songId, key, value) {
         const USER_PLAYLIST = this.getSongsListById(userId);
         let success = false;
@@ -121,13 +121,14 @@ class DataBase {
     }
     //need to change to finding the song by the name
     deleteSong(userId, songId) {
-        const USER_PLAYLIST = this.getSongsListById(userId);
+        let USER_PLAYLIST = this.getSongsListById(userId);
+        console.log(USER_PLAYLIST)
         let index = -1;
         if (USER_PLAYLIST === 404) {
             return 404;
         }
         for (let i = 0; i < USER_PLAYLIST.length - 1; i++) {
-            if (USER_PLAYLIST[i].id === songId) {
+            if (USER_PLAYLIST[i].id === parseInt(songId)) {
                 index = i;
             }
         }
@@ -137,7 +138,7 @@ class DataBase {
         else {
             USER_PLAYLIST.splice(index, 1);
             localStorage.setItem("playlists", JSON.stringify(this.playlists));
-            return 202;
+            return 200;
         }
     }
 

@@ -71,7 +71,8 @@ function removeSong(e) {
             alert("could not delete song")
         }
     }
-    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.className)
+    console.log(e.target.className)
+    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.className)
 }
 function editSong(e) {
     //should get a key and value to change
