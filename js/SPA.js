@@ -36,7 +36,7 @@ function loadPlaylist() {
     const UL = document.getElementById("playlist-container");
     let onload = function () {
         if (this.status === 200) {
-            let list = JSON.parse(this.responseText)
+            let list = this.responseText;
             for (let song of list) {
                 let button = document.createElement("button")
                 button.addEventListener("click", removeSong)
