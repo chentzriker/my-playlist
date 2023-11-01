@@ -3,14 +3,15 @@ let content;
 let clon;
 let temp;
 
+function checkIfUserConected(){
+    if (location.hash === ""){
+        showContent(0)
+    }
+    else{
+        showContent(2)
+    }
+}
 function showContent(i) {
-    // if (i === 2) {
-    //     //checks if the fields are valid before going to the server
-    //     if (!checkValidtion()) {
-    //         alert("one field or more is wrong")
-    //         return
-    //     }
-    // }
     content = document.getElementById("content")
     content.innerHTML = ""
     temp = document.getElementsByTagName("template")[i];
@@ -31,31 +32,29 @@ function login() {
 }
 
 //adds the user's playlist items to the playlist template tag 
-function loadPlaylist(list) {
-    let onload = function () {
-        if (this.status !== 200) {
-            alert("somthing went wrong")
-            return
-        }
-    }
-    let request = createRequest("GET", "playlists", location.hash.slice(0, 1), onload)
+function loadPlaylist() {
     const UL = document.getElementById("playlist-container");
-    if (request.status === 200) {
-        let list = request.responseText
-        for (let song of list) {
-            let li = document.createElement("li");
-            li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
-            UL.appendChild(li);
+    let onload = function () {
+        if (this.status === 200) {
+            let list = JSON.parse(this.responseText)
+            for (let song of list.playlist) {
+                let li = document.createElement("li");
+                li.innerHTML = song.title + "<br/> artist: " + song.artist + "<br/.> legth: " + song.length;
+                UL.appendChild(li);
+            }
+        }
+        else {
+            alert("somthing went wrong")
         }
     }
-    else {
-        alert("somthing went wrong")
-    }
+   createRequest("GET", "playlists", parseInt(location.hash.slice(1)), onload)
+
 }
 
 function logOut() {
     const UL = document.getElementById("playlist-container");
     UL.innerHTML = "";
+    location.hash = ""
     showContent(0);
 }
 

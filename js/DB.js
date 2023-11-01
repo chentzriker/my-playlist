@@ -2,7 +2,7 @@ class DataBase {
     constructor() {
         this.users = JSON.parse(localStorage.getItem("users")) || { idCount: 1, users: [] };
         this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
-        if (this.users[users][0] === undefined) {
+        if (this.users['users'][0] === undefined) {
             this.addUser(new User("chen", "123456"));
         }
     }
@@ -39,7 +39,8 @@ class DataBase {
         let users = this.users;
         for (const element of users.users) {
             if (element.id === userId) {
-                element[key] === value;
+                element[key] = value;
+                console.log('element[key]: ', element[key]);
                 localStorage.setItem("users", JSON.stringify(users));
                 return 200;
             }
