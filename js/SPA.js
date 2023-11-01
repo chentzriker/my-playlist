@@ -27,14 +27,7 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    //* create new FAJAX and send it
-    let request = new FXMLHttpRequest()
-    // request.open("POST", "my-playlist.il/users")
-    // request.onload  =function(){}
-    // request.send(JSON.stringify({ name: username, password: password }))
-    //* see if the server returnd that this user Exists or not
-    //load the user page
-    showContent(2)
+    sendHTMLLoginRequest(username,password);
 }
 
 //adds the user's playlist items to the playlist template tag 
