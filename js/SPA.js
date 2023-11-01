@@ -4,7 +4,6 @@ let clon;
 let temp;
 
 function showContent(i) {
-    //before moving to the playlist
     // if (i === 2) {
     //     //checks if the fields are valid before going to the server
     //     if (!checkValidtion()) {
@@ -28,12 +27,12 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    //create new FAJAX and send it
+    //* create new FAJAX and send it
     let request = new FXMLHttpRequest()
-    request.open("POST", "my-playlist.il/users")
-    request.onload  =function(){}
-    request.send(JSON.stringify({ name: username, password: password }))
-    //see if the server returnd that this user Exists or not
+    // request.open("POST", "my-playlist.il/users")
+    // request.onload  =function(){}
+    // request.send(JSON.stringify({ name: username, password: password }))
+    //* see if the server returnd that this user Exists or not
     //load the user page
     showContent(2)
 }
