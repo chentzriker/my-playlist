@@ -69,7 +69,6 @@ class Server{
 
     }
 }    
-
-
+const SERVER = new Server();
 
 
