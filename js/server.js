@@ -37,7 +37,9 @@ class Server {
         let urlArr = req.url.split("/")
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
-                if (checkValidtion(req.param.name, req.param.password)) {
+                console.log("got here");
+                let obj = JSON.parse(req.param)
+                if (checkValidtion(obj.name,obj.password)) {
                     try {
                         req.status = checkUserExistence(getUsersArray(), req.param)
                     }
@@ -68,11 +70,13 @@ class Server {
         if (users.length === 0) {
             throw new Error("no users")
         }
+        console.log("hellow")
         for (let x of users) {
             if (x.name === client.name && x.password === client.password) {
                 return 200
             }
             else {
+                console.log("hi")
                 throw new Error("wrong user name or password")
             }
 
