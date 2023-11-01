@@ -1,7 +1,67 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #DDE6ED;
+    font-size: larger;
+}
+
 fieldset {
+    margin: 3em auto;
+    border-color: #9DB2BF;
+    background-color: #9DB2BF;
+    width: 50vw;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+#newSongForm {
+    display: none;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+}
+
+button,
+input[type="submit"] {
+
+    width: 15vw;
+    font-size: 1.2em;
+    border-radius: 1em;
+    line-height: 1.4em;
+}
+label {
+    font-size: 1.2em;
+
+}
+
+#buttonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40vw;
+    justify-content: space-between;
+    margin: 0 auto;
+
+}
+form{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     margin: 0 auto;
 }
-#newSongForm {
-    display:none;
-    flex-direction: column;
+input{
+    margin-bottom: 1.5em;
+}
+#logout {
+    /* align-self: center; */
+}
+ul {
+    width: -webkit-fill-available;
+}
+li {
+    border-bottom: 1px solid #526D82;
+    list-style: none;
+    margin-bottom: 1em;
 }
