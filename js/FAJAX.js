@@ -8,7 +8,8 @@ class FXMLHttpRequest {
         this.url = url
     }
     send(param = "") {
-        this.param = param
-        toServer(this.param || { orderType: this.orderType, url: this.url })
+        this.param = param;
+        //send to network
+        toServer(JSON.stringify(this))
     }
 }

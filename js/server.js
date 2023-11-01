@@ -53,7 +53,6 @@ class Server{
         return ans;//????? needs to return fajax
     }
 }    
-
-
+const SERVER = new Server();
 
 

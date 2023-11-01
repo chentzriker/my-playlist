@@ -1,3 +1,8 @@
+function recieveDataFromServer(strObj) {
+    let fajax = JSON.parse(strObj);
+    fajax.onload();
+}
+
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
     let onload = () => {
@@ -9,14 +14,14 @@ function sendHTMLLoginRequest(username, password) {
 
         }
     };
-    createRequest("POST", "users", "", onload, JSON.stringify({ "name": username, "password": password }));
+    createRequest("POST", "users", "", onload, {"name": username, "password": password });
     //see if the server returnd that this user Exists or not
     //load the user page
 }
 
-function createUserIdRequest(orderType, location, userId, onload, toChange = undefined) {
+function createUserIdRequest(orderType, location, userId, onload, param = undefined) {
     let request = new FXMLHttpRequest()
     request.open(orderType, "/my-playlist.il.API/" + location + "/" + userId);
     request.onload = onload;
-    request.send(JSON.stringify(toChange));
+    request.send(JSON.stringify(param));
 }
