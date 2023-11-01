@@ -56,9 +56,11 @@
                 <input type="text" name="length" id="length">
                 <input type="submit" value="add!">
             </form>
-            <button id="addSong" class="addSong" onclick="showSongForm()">add song</button>
-            <button id="showPlaylist" onclick="loadPlaylist()">show my playlist</button>
-            <h2>your playlist:</h2>
+            <div id="buttonsContainer">
+                <button id="addSong" class="addSong" onclick="showSongForm()">add song</button>
+                <button id="showPlaylist" onclick="loadPlaylist()">show my playlist</button>
+            </div>
+                <h2>your playlist:</h2>
             <ul id="playlist-container">
             </ul>
             <button id="logout" class="movePage" onclick="logOut()">log out</button>

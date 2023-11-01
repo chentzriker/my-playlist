@@ -34,6 +34,7 @@ function login() {
 //adds the user's playlist items to the playlist template tag 
 function loadPlaylist() {
     const UL = document.getElementById("playlist-container");
+    UL.innerHTML = "";
     let onload = function () {
         if (this.status === 200) {
             let list = this.responseText;
@@ -53,6 +54,7 @@ function loadPlaylist() {
    createRequest("GET", "playlists", parseInt(location.hash.slice(1)), onload)
 
 }
+function removeSong(){}
 
 function logOut() {
     const UL = document.getElementById("playlist-container");
