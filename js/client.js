@@ -8,6 +8,9 @@ function sendHTMLLoginRequest(username, password) {
     let onload = function() {
         console.log(this)
         if (this.status === 200) {
+            changeHashId(JSON.parse(this.param).id);
+            console.log('this.id: ', this.id);
+            console.log('this: ', this);
             showContent(2)
         }
         else {

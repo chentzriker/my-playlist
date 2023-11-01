@@ -3,6 +3,7 @@
 
 // user related methods:
 // * getUsers() - returns an array with all the users.
+// * getUserId(name, password) - returns the given user's id. warning: user has to exist! if not, returns 404.
 // * addUser(obj) - gets a user object and adds it to the database. if fails, returns 404,
 // otherwise - returns 200
 // * editUser(userId, key, value) - changes the value of the key that belongs to the user with 
@@ -39,15 +40,17 @@ class Server {
             if (urlArr[2] === "users") {
                 console.log("got here");
                 let obj = JSON.parse(req.param)
-                if (this.checkValidtion(obj.name,obj.password)) {
+                if (this.checkValidtion(obj.name, obj.password)) {
                     try {
                         req.status = this.checkUserExistence(this.getUsersArray(), obj)
+                        obj.id = DB.getUserId(obj.name, obj.password);
                     }
                     catch (e) {
                         req.status = 404
                         req.responseText = e.message
                     }
                 }
+                req.param = JSON.stringify(obj);
             }
         }
         NET.toClient(req)

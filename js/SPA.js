@@ -27,7 +27,7 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    sendHTMLLoginRequest(username,password);
+    sendHTMLLoginRequest(username, password);
 }
 
 //adds the user's playlist items to the playlist template tag 
@@ -55,5 +55,10 @@ function checkValidtion(username, password) {
         return false
     }
     return true
+}
+
+function changeHashId(id) {
+    let hash = location.hash = "";
+    window.location.hash += id;
 }
 
