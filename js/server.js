@@ -39,9 +39,9 @@ class Server {
             if (urlArr[2] === "users") {
                 console.log("got here");
                 let obj = JSON.parse(req.param)
-                if (checkValidtion(obj.name,obj.password)) {
+                if (this.checkValidtion(obj.name,obj.password)) {
                     try {
-                        req.status = checkUserExistence(getUsersArray(), req.param)
+                        req.status = this.checkUserExistence(this.getUsersArray(), obj)
                     }
                     catch (e) {
                         req.status = 404

@@ -5,7 +5,7 @@ function recieveDataFromServer(strObj) {
 
 function sendHTMLLoginRequest(username, password) {
     //create new FAJAX and send it
-    let onload = () => {
+    let onload = function() {
         console.log(this)
         if (this.status === 200) {
             showContent(2)
