@@ -10,6 +10,7 @@ class FXMLHttpRequest {
     send(param = "") {
         this.param = param;
         //send to network
-        NET.toServer(JSON.stringify(this));
+        console.log(this);
+        NET.toServer(this);
     }
 }

@@ -1,5 +1,5 @@
 function recieveDataFromServer(strObj) {
-    let fajax = JSON.parse(strObj);
+    let fajax = (strObj);
     fajax.onload();
 }
 
@@ -11,7 +11,6 @@ function sendHTMLLoginRequest(username, password) {
         }
         else {
             alert("one field or more is wrong")
-
         }
     };
     createRequest("POST", "users", "", onload, {"name": username, "password": password });
@@ -19,7 +18,7 @@ function sendHTMLLoginRequest(username, password) {
     //load the user page
 }
 
-function createUserIdRequest(orderType, location, userId, onload, param = undefined) {
+function createRequest(orderType, location, userId, onload, param = undefined) {
     let request = new FXMLHttpRequest()
     request.open(orderType, "/my-playlist.il.API/" + location + "/" + userId);
     request.onload = onload;

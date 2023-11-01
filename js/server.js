@@ -34,11 +34,10 @@ class song {
 class Server {
     constructor() { };
     analyzeRequest(req) {
-        req = JSON.parse(req)
-        let urlArr = req.split("/")
+        let urlArr = req.url.split("/")
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
-                if (checkValidtion(param.name, param.password)) {
+                if (checkValidtion(req.param.name, req.param.password)) {
                     try {
                         req.status = checkUserExistence(getUsersArray(), req.param)
                     }
@@ -49,7 +48,7 @@ class Server {
                 }
             }
         }
-        toClient(req)
+        NET.toClient(req)
     }
     checkValidtion(username, password) {
 
