@@ -38,7 +38,8 @@ class Server {
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
                 console.log("got here");
-                if (checkValidtion(req.param.name, req.param.password)) {
+                let obj = JSON.parse(req.param)
+                if (checkValidtion(obj.name,obj.password)) {
                     try {
                         req.status = checkUserExistence(getUsersArray(), req.param)
                     }
