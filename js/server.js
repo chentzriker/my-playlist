@@ -38,7 +38,31 @@ class Server {
         let urlArr = req.url.split("/")
         if (req.orderType === "POST") {
             if (urlArr[2] === "users") {
-                console.log("got here");
+                let obj = JSON.parse(req.param);
+                req.status = this.addUserToDB(obj.name, obj.password)
+                if (req.status === 200) {
+                    obj.id = DB.getUserId(obj.name, obj.password);
+                }
+            }
+            else {
+                let obj = JSON.parse(req.param);
+                req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length);
+                if (req.status === 404) {
+                    req.responseText = "ERROR! failed to add song. playlist does not exist. contact customer service for help."
+                }
+            }
+        }
+        else if (req.orderType === "GET") {
+            if (urlArr[2] === "playlists") {
+                if (this.getplaylist(urlArr[3]) === 404) {
+                    req.status = 404
+                }
+                else {
+                    req.responseText = this.getplaylist(urlArr[3])
+                    req.status = 200
+                }
+            }
+            else if (urlArr[2] === "users") {
                 let obj = JSON.parse(req.param)
                 if (this.checkValidtion(obj.name, obj.password)) {
                     try {
@@ -52,38 +76,16 @@ class Server {
                 }
                 req.param = JSON.stringify(obj);
             }
-            else {
-                let obj = JSON.parse(req.param);
-                req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length);
-                if (req.status === 404) {
-                    req.responseText = "ERROR! failed to add song. playlist does not exist. contact customer service for help."
-                }
-                // else {
-                //     // obj.id = DB.getSongID()
-
-                // }
-            }
-        }
-        else if (req.orderType === "GET") {
-            if (urlArr[2] === "playlists") {
-                if (this.getplaylist(urlArr[3]) === 404) {
-                    req.status = 404
-                }
-                else {
-                    req.responseText = this.getplaylist(urlArr[3])
-                    req.status = 200
-                }
-            }
         }
         else if (req.orderType === "DELETE") {
             if (urlArr[2] === "playlists") {
                 let obj = JSON.parse(req.param)
-               
-                    
+
+
                 if (this.removeSongFromPlaylist(parseInt(urlArr[3]), parseInt(obj)) === 404) {
                     req.status = 404
                 }
-                else{
+                else {
                     req.status = 200
                 }
 

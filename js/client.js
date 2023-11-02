@@ -3,7 +3,7 @@ function recieveDataFromServer(strObj) {
     fajax.onload();
 }
 
-function sendHTMLLoginRequest(username, password) {
+function sendHTMLEnterRequest(username, password,orderType) {
     //create new FAJAX and send it
     let onload = function () {
         if (this.status === 200) {
@@ -15,7 +15,7 @@ function sendHTMLLoginRequest(username, password) {
             alert("one field or more is wrong");
         }
     };
-    createRequest("POST", "users", "", onload, { "name": username, "password": password });
+    createRequest(orderType, "users", "", onload, { "name": username, "password": password });
     //see if the server returnd that this user Exists or not
     //load the user page
 }

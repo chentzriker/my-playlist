@@ -28,7 +28,18 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    sendHTMLLoginRequest(username, password);
+    sendHTMLEnterRequest(username, password,"GET");
+}
+
+function signUp() {
+    let username = document.getElementById("Username").value
+    let password = document.getElementById("Password").value
+    let confirm = document.getElementById("Confirm").value
+    if (!checkValidtion(username, password) || password!==confirm) {
+        alert("fill the fields correctly")
+        return
+    }
+    sendHTMLEnterRequest(username, password,"POST");
 }
 
 //adds the user's playlist items to the playlist template tag 
