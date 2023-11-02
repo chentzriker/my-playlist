@@ -9,6 +9,7 @@ function checkIfUserConected() {
     }
     else {
         showContent(2)
+        loadPlaylist();
     }
 }
 function showContent(i) {
@@ -28,18 +29,18 @@ function login() {
         alert("one field or more is wrong")
         return
     }
-    sendHTMLEnterRequest(username, password,"GET");
+    sendHTMLEnterRequest(username, password, "GET");
 }
 
 function signUp() {
     let username = document.getElementById("Username").value
     let password = document.getElementById("Password").value
     let confirm = document.getElementById("Confirm").value
-    if (!checkValidtion(username, password) || password!==confirm) {
+    if (!checkValidtion(username, password) || password !== confirm) {
         alert("fill the fields correctly")
         return
     }
-    sendHTMLEnterRequest(username, password,"POST");
+    sendHTMLEnterRequest(username, password, "POST");
 }
 
 //adds the user's playlist items to the playlist template tag 
@@ -59,10 +60,15 @@ function loadPlaylist() {
                 button1.classList.add(song.id, "small-button")
                 button2.classList.add(song.id, "small-button")
                 let li = document.createElement("li");
-                li.innerHTML = "<strong>" + song.title + "</strong>" + "<br/> artist: " + song.artist + "<br/> legth: " + song.length + "<br/>";
-                li.appendChild(button1)
-                li.appendChild(button2)
+                li.innerHTML = "<div id=\"text\"><strong>" + song.title + "</strong>" + "<br/> artist: " + song.artist + "<br/> length: " + song.length + "<br/><div/>";
+                li.innerHTML += "<audio controls><source src=\"" + song.path + "\" type=\"audio/mpeg\"></audio><br/>";
+                let buttonsDiv = document.createElement("div");
+                buttonsDiv.appendChild(button1)
+                buttonsDiv.appendChild(button2)
+                li.appendChild(buttonsDiv)
+
                 UL.appendChild(li);
+
             }
         }
         else {

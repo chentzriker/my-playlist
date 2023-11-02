@@ -48,6 +48,7 @@ function addSongToUserPlaylist() {
     const title = document.getElementById("title").value;
     const artist = document.getElementById("artist").value;
     const length = document.getElementById("length").value;
+    const path = document.getElementById("file").value.replace("C:\\fakepath\\", "./songs/");;
 
-    createRequest("POST", "playlists", parseInt(location.hash.slice(1)), onload, { "title": title, "artist": artist, "length": length });
+    createRequest("POST", "playlists", parseInt(location.hash.slice(1)), onload, { "title": title, "artist": artist, "length": length, "path": path });
 }

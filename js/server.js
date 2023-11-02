@@ -26,10 +26,11 @@ class User {
     }
 }
 class Song {
-    constructor(title, artist, length) {
+    constructor(title, artist, length, path) {
         this.title = title;
         this.artist = artist;
         this.length = length;
+        this.path = path;
     }
 }
 class Server {
@@ -46,7 +47,7 @@ class Server {
             }
             else {
                 let obj = JSON.parse(req.param);
-                req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length);
+                req.status = this.addSongToPlaylistDB(urlArr[3], obj.title, obj.artist, obj.length, obj.path);
                 if (req.status === 404) {
                     req.responseText = "ERROR! failed to add song. playlist does not exist. contact customer service for help."
                 }
@@ -138,8 +139,8 @@ class Server {
     getplaylist(id) {
         return DB.getSongsListById(id);
     }
-    addSongToPlaylistDB(userId, title, artist, length) {
-        return DB.addSongToPlaylist(userId, new Song(title, artist, length));
+    addSongToPlaylistDB(userId, title, artist, length, path) {
+        return DB.addSongToPlaylist(userId, new Song(title, artist, length, path));
     }
     removeSongFromPlaylist(userId, songId) {
         return DB.deleteSong(userId, songId)

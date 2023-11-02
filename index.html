@@ -8,6 +8,7 @@
     <title>my playlist</title>
 </head>
 
+
 <body onload="checkIfUserConected()">
     <div id="content"></div>
     <template>
@@ -53,7 +54,10 @@
                 <input type="text" name="artist" id="artist">
                 <label for="length">length:</label>
                 <input type="text" name="length" id="length">
+                <label for="file">choose your file: </label>
+                <input type="file" name="file" id="file">
                 <input type="submit" value="add!">
+                
             </form>
             <div id="buttonsContainer">
                 <button id="logout" class="movePage" onclick="logOut()">log out</button>

@@ -63,9 +63,6 @@ class DataBase {
         this.playlists = JSON.parse(localStorage.getItem("playlists"));
         for (let playlist of this.playlists) {
             if (playlist.userId === parseInt(id)) {
-                if (playlist.songs.length === 0){
-                    return 404;
-                }
                 return playlist.songs;
             }
         }
