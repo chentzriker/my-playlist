@@ -61,7 +61,7 @@ function loadPlaylist() {
                 button2.classList.add(song.id, "small-button")
                 let li = document.createElement("li");
                 li.innerHTML = "<div id=\"text\"><strong>" + song.title + "</strong>" + "<br/> artist: " + song.artist + "<br/> length: " + song.length + "<br/><div/>";
-                li.innerHTML += "<audio controls><source src=\"" + song.path + "\" type=\"audio/mpeg\"></audio><br/>";
+                li.innerHTML += "<audio controls><source src=\"" + song.path + "\" type=\"audio/mpeg\">file not available</audio><br/>";
                 let buttonsDiv = document.createElement("div");
                 buttonsDiv.appendChild(button1)
                 buttonsDiv.appendChild(button2)
@@ -81,7 +81,7 @@ function loadPlaylist() {
 function removeSong(e) {
     let onload = function () {
         if (this.status === 200) {
-            let li = e.target.parentElement
+            let li = e.target.parentElement.parentElement;
             li.remove();
         }
         else {
