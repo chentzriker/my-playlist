@@ -1,4 +1,3 @@
-
 let content;
 let clon;
 let temp;
@@ -12,6 +11,7 @@ function checkIfUserConected() {
         loadPlaylist();
     }
 }
+
 function showContent(i) {
     content = document.getElementById("content")
     content.innerHTML = ""

@@ -8,6 +8,7 @@ function sendHTMLEnterRequest(username, password,orderType) {
     let onload = function () {
         if (this.status === 200) {
             changeHashId(JSON.parse(this.param).id);
+            console.log('(this.param).id: ', (this.param).id);
             showContent(2);
             loadPlaylist();
         }
