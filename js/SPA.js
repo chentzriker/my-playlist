@@ -65,7 +65,7 @@ function removeSong(e) {
     let onload = function () {
         if (this.status === 200) {
             let li = e.target.parentElement
-            li.remove
+            li.remove()
         }
         else {
             alert("could not delete song")

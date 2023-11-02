@@ -68,11 +68,10 @@ class DataBase {
             console.log('id: ', id);
             if (playlist.userId === parseInt(id)) {
                 console.log("hi");
+                console.log('playlist.songs: ', playlist.songs);
                 return playlist.songs;
             }
         }
-
-        console.log("oops")
         return 404;
     }
     getPlaylistObj(id) {
