@@ -22,27 +22,6 @@ function showContent(i) {
     content.appendChild(clon);
 }
 
-function login() {
-    let username = document.getElementById("Username").value
-    let password = document.getElementById("Password").value
-    if (!checkValidtion(username, password)) {
-        alert("one field or more is wrong")
-        return
-    }
-    sendHTMLEnterRequest(username, password, "GET");
-}
-
-function signUp() {
-    let username = document.getElementById("Username").value
-    let password = document.getElementById("Password").value
-    let confirm = document.getElementById("Confirm").value
-    if (!checkValidtion(username, password) || password !== confirm) {
-        alert("fill the fields correctly")
-        return
-    }
-    sendHTMLEnterRequest(username, password, "POST");
-}
-
 //adds the user's playlist items to the playlist template tag 
 function loadPlaylist() {
     const UL = document.getElementById("playlist-container");
@@ -76,37 +55,17 @@ function loadPlaylist() {
         }
     }
     createRequest("GET", "playlists", parseInt(location.hash.slice(1)), onload)
+}
 
-}
-function removeSong(e) {
-    let onload = function () {
-        if (this.status === 200) {
-            let li = e.target.parentElement.parentElement;
-            li.remove();
-        }
-        else {
-            alert("could not delete song")
-        }
+
+function login() {
+    let username = document.getElementById("Username").value
+    let password = document.getElementById("Password").value
+    if (!checkValidtion(username, password)) {
+        alert("one field or more is wrong")
+        return
     }
-    console.log(e.target.className)
-    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.classList[0])
-}
-function editSong(e) {
-    //should get a key and value to change
-    //then pass it with param in createRequest
-    //then when it come back to change the innerHTML of the li to the new parameters
-    //according to what is in param
-    let onload = function () {
-        if (this.status === 200) {
-            let li = e.target.parentElement
-            li.innerHTML = ""
-        }
-        else {
-            alert("this feature is still in development. stay tuned!")
-        }
-    }
-    console.log('parseInt(location.hash.slice(1)): ', parseInt(location.hash.slice(1)));
-    createRequest("PUT", "playlists", parseInt(location.hash.slice(1)), onload);
+    sendHTMLEnterRequest(username, password, "GET");
 }
 
 function logOut() {
@@ -116,19 +75,16 @@ function logOut() {
     showContent(0);
 }
 
-function checkValidtion(username, password) {
-
-    if (!username || !password) {
-        return false
+function signUp() {
+    let username = document.getElementById("Username").value
+    let password = document.getElementById("Password").value
+    let confirm = document.getElementById("Confirm").value
+    if (!checkValidtion(username, password) || password !== confirm) {
+        alert("fill the fields correctly")
+        return
     }
-    if (password.length < 5 || username.length < 4) {
-        return false
-    }
-    return true
+    sendHTMLEnterRequest(username, password, "POST");
 }
 
-function changeHashId(id) {
-    let hash = location.hash = "";
-    window.location.hash += id;
-}
 
+//client:

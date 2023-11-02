@@ -40,7 +40,6 @@ class DataBase {
         for (const element of users.users) {
             if (element.id === userId) {
                 element[key] = value;
-                console.log('element[key]: ', element[key]);
                 localStorage.setItem("users", JSON.stringify(users));
                 return 200;
             }
@@ -86,9 +85,7 @@ class DataBase {
         }
         USER_PLAYLIST.countSongsId++;
         song.id = USER_PLAYLIST.countSongsId;
-        console.log('USER_PLAYLIST.countSongsId: ', USER_PLAYLIST.countSongsId);
         USER_PLAYLIST.songs.push(song);
-        console.log('USER_SONGS: ', USER_SONGS);
         localStorage.setItem("playlists", JSON.stringify(this.playlists));
         return 200;
     }
@@ -115,7 +112,6 @@ class DataBase {
     }
     deleteSong(userId, songId) {
         let USER_PLAYLIST = this.getSongsListById(userId);
-        console.log(USER_PLAYLIST)
         let index = -1;
         if (USER_PLAYLIST === 404) {
             return 404;

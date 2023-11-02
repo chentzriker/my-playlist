@@ -24,7 +24,6 @@ class Server {
                 req.status = this.addUserToDB(obj.name, obj.password)
                 if (req.status === 200) {
                     obj.id = DB.getUserId(obj.name, obj.password);
-                    console.log('obj.id: ', obj.id);
                 }
                 req.param = JSON.stringify(obj);
             }

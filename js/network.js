@@ -4,7 +4,6 @@ class Network {
         setTimeout(this.sendStringToServer, 1000, jsonFajax); 
     }
     sendStringToServer(jsonFajax){
-        console.log("was here");
         SERVER.analyzeRequest(jsonFajax);
     }
     toClient(jsonFajax){

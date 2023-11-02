@@ -1,13 +1,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* background-color: #DDE6ED; */
     font-size: larger;
     background-image: url("../media/background.jpg");
 }
+
 legend {
     color: white;
     text-shadow: 1px 1px 2px rgb(158, 33, 197), 0 0 1em blue, 0 0 0.2em blue;
 }
+
 fieldset {
     margin: 3em auto;
     border-color: #9db2bf;
@@ -84,13 +85,14 @@ li {
     column-gap: 1em;
 }
 
-.small-button{
+.small-button {
     width: 10vw;
     font-size: 0.8em;
     border-radius: 1em;
     line-height: 1em;
     left: 40%;
 }
-#text{
+
+#text {
     width: 30%;
 }
