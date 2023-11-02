@@ -78,12 +78,13 @@ class Server {
         else if (req.orderType === "DELETE") {
             if (urlArr[2] === "playlists") {
                 let obj = JSON.parse(req.param)
-                console.log( parseInt(obj));
-                if (this.removeSongFromPlaylist(parseInt(urlArr[3]), parseInt(obj)) === 200) {
-                    req.status = 200
+               
+                    
+                if (this.removeSongFromPlaylist(parseInt(urlArr[3]), parseInt(obj)) === 404) {
+                    req.status = 404
                 }
                 else{
-                    req.status = 404
+                    req.status = 200
                 }
 
             }

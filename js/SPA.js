@@ -65,14 +65,14 @@ function removeSong(e) {
     let onload = function () {
         if (this.status === 200) {
             let li = e.target.parentElement
-            li.remove
+            li.remove();
         }
         else {
             alert("could not delete song")
         }
     }
     console.log(e.target.className)
-    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.className)
+    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.classList[0])
 }
 function editSong(e) {
     //should get a key and value to change
@@ -88,7 +88,8 @@ function editSong(e) {
             alert("could not edit song")
         }
     }
-    createRequest("PUT", "playlists", parseInt(location.hash.slice(1)), onload)
+    console.log('parseInt(location.hash.slice(1)): ', parseInt(location.hash.slice(1)));
+    createRequest("PUT", "playlists", parseInt(location.hash.slice(1)), onload);
 }
 
 function logOut() {
