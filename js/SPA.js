@@ -45,8 +45,8 @@ function loadPlaylist() {
                 button2.addEventListener("click", editSong)
                 button1.textContent = "remove"
                 button2.textContent = "edit"
-                button1.classList.add(song.id)
-                button2.classList.add(song.id)
+                button1.classList.add(song.id, "small-button")
+                button2.classList.add(song.id, "small-button")
                 let li = document.createElement("li");
                 li.innerHTML = "<strong>" + song.title + "</strong>" + "<br/> artist: " + song.artist + "<br/> legth: " + song.length + "<br/>";
                 li.appendChild(button1)
@@ -65,14 +65,14 @@ function removeSong(e) {
     let onload = function () {
         if (this.status === 200) {
             let li = e.target.parentElement
-            li.remove()
+            li.remove();
         }
         else {
             alert("could not delete song")
         }
     }
     console.log(e.target.className)
-    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.className)
+    createRequest("DELETE", "playlists", parseInt(location.hash.slice(1)), onload, e.target.classList[0])
 }
 function editSong(e) {
     //should get a key and value to change
@@ -88,7 +88,8 @@ function editSong(e) {
             alert("could not edit song")
         }
     }
-    createRequest("PUT", "playlists", parseInt(location.hash.slice(1)), onload)
+    console.log('parseInt(location.hash.slice(1)): ', parseInt(location.hash.slice(1)));
+    createRequest("PUT", "playlists", parseInt(location.hash.slice(1)), onload);
 }
 
 function logOut() {

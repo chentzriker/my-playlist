@@ -118,7 +118,6 @@ class DataBase {
             return success;
         }
     }
-    //need to change to finding the song by the name
     deleteSong(userId, songId) {
         let USER_PLAYLIST = this.getSongsListById(userId);
         console.log(USER_PLAYLIST)
@@ -126,12 +125,12 @@ class DataBase {
         if (USER_PLAYLIST === 404) {
             return 404;
         }
-        for (let i = 0; i < USER_PLAYLIST.length - 1; i++) {
+        for (let i = 0; i < USER_PLAYLIST.length; i++) {
             if (USER_PLAYLIST[i].id === parseInt(songId)) {
                 index = i;
             }
         }
-        if (index = -1) {
+        if (index === -1) {
             return 404;
         }
         else {

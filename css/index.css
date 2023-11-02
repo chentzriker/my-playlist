@@ -6,7 +6,7 @@ body {
 
 fieldset {
     margin: 3em auto;
-    border-color: #9DB2BF;
+    border-color: #9db2bf;
     background-color: #9DB2BF;
     width: 50vw;
     border-radius: 1em;
@@ -64,4 +64,11 @@ li {
     border-bottom: 1px solid #526D82;
     list-style: none;
     margin-bottom: 1em;
+}
+.small-button {
+    width: 10vw;
+    font-size: 0.8em;
+    border-radius: 1em;
+    line-height: 1em;
+    left: 40%;
 }
