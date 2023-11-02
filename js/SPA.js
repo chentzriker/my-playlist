@@ -1,4 +1,3 @@
-
 let content;
 let clon;
 let temp;
@@ -11,6 +10,7 @@ function checkIfUserConected() {
         showContent(2)
     }
 }
+
 function showContent(i) {
     content = document.getElementById("content")
     content.innerHTML = ""

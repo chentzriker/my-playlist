@@ -1,30 +1,10 @@
-//~ DATABASE API: ~
-// database name: DB
-
-// user related methods:
-// * getUsers() - returns an array with all the users.
-// * getUserId(name, password) - returns the given user's id. warning: user has to exist! if not, returns 404.
-// * addUser(obj) - gets a user object and adds it to the database. if fails, returns 404,
-// otherwise - returns 200
-// * editUser(userId, key, value) - changes the value of the key that belongs to the user with 
-// the given id. if fails, returns 404, otherwise - returns 200.
-// * deleteUser(userId) - deletes the the user with 
-// the given id. if fails, returns 404, otherwise - returns 200.
-
-// song / playlist related methods:
-// * getSongsListById(id) - returns the user's playlist by their id. if fails, returns 404.
-// * getPlaylistObj(id) - returns the user's playlist OBJECT (which means, an object with the user's id, 
-// id count for the songs and playlist array) by their id. if fails, returns 404.
-// * addSongToPlaylist(userId, song) - adds a given song to the user's playlist with their given id. 
-// if fails, returns 404. otherwise, 200.
-// * editSong(userId, songId, key, value)
-// * deleteSong(userId, songId) 
 class User {
     constructor(name, password) {
         this.name = name
         this.password = password
     }
 }
+
 class Song {
     constructor(title, artist, length) {
         this.title = title;
@@ -32,6 +12,7 @@ class Song {
         this.length = length;
     }
 }
+
 class Server {
     constructor() { };
     analyzeRequest(req) {
@@ -42,7 +23,9 @@ class Server {
                 req.status = this.addUserToDB(obj.name, obj.password)
                 if (req.status === 200) {
                     obj.id = DB.getUserId(obj.name, obj.password);
+                    console.log('obj.id: ', obj.id);
                 }
+                req.param = JSON.stringify(obj);
             }
             else {
                 let obj = JSON.parse(req.param);
@@ -151,3 +134,40 @@ class Server {
 const SERVER = new Server();
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//~ DATABASE API: ~
+// database name: DB
+
+// user related methods:
+// * getUsers() - returns an array with all the users.
+// * getUserId(name, password) - returns the given user's id. warning: user has to exist! if not, returns 404.
+// * addUser(obj) - gets a user object and adds it to the database. if fails, returns 404,
+// otherwise - returns 200
+// * editUser(userId, key, value) - changes the value of the key that belongs to the user with 
+// the given id. if fails, returns 404, otherwise - returns 200.
+// * deleteUser(userId) - deletes the the user with 
+// the given id. if fails, returns 404, otherwise - returns 200.
+
+// song / playlist related methods:
+// * getSongsListById(id) - returns the user's playlist by their id. if fails, returns 404.
+// * getPlaylistObj(id) - returns the user's playlist OBJECT (which means, an object with the user's id, 
+// id count for the songs and playlist array) by their id. if fails, returns 404.
+// * addSongToPlaylist(userId, song) - adds a given song to the user's playlist with their given id. 
+// if fails, returns 404. otherwise, 200.
+// * editSong(userId, songId, key, value)
+// * deleteSong(userId, songId) 
