@@ -1,17 +1,18 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* background-color: #DDE6ED; */
+    color: white;
     font-size: larger;
     background-image: url("../media/background.jpg");
 }
-legend {
+legend, h2 {
     color: white;
     text-shadow: 1px 1px 2px rgb(158, 33, 197), 0 0 1em blue, 0 0 0.2em blue;
 }
 fieldset {
     margin: 3em auto;
-    border-color: #9db2bf;
-    background-color: #9DB2BF;
+    border-color: #a089e7;
+    background-color: #614898;
     width: 50vw;
     border-radius: 1em;
     display: flex;
@@ -35,7 +36,8 @@ h2 {
 
 button,
 input[type="submit"] {
-
+    background-color: #dec3f8;
+    color:black;
     width: 15vw;
     font-size: 1.2em;
     border-radius: 1em;
@@ -76,7 +78,7 @@ ul {
 }
 
 li {
-    border-bottom: 1px solid #526D82;
+    border-bottom: 1px solid #3b75a1;
     list-style: none;
     margin-bottom: 1em;
     display: flex;
