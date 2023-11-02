@@ -127,9 +127,7 @@ class Server {
     removeSongFromPlaylist(userId, songId) {
         return DB.deleteSong(userId, songId)
     }
-    editSong() {
-
-    }
+    
 }
 const SERVER = new Server();
 

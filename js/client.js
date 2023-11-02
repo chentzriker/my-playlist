@@ -10,6 +10,7 @@ function sendHTMLEnterRequest(username, password,orderType) {
             changeHashId(JSON.parse(this.param).id);
             console.log('(this.param).id: ', (this.param).id);
             showContent(2);
+            loadPlaylist();
         }
         else {
             alert("one field or more is wrong");
@@ -39,7 +40,7 @@ function addSongToUserPlaylist() {
     let onload = function () {
         if (this.status === 200) {
             alert("your song was added successfully:) check out your updated playlist!!")
-            // loadPlaylist()
+            loadPlaylist();
         }
         else {
             alert("something went wrong:(");

@@ -15,6 +15,9 @@ fieldset {
     flex-wrap: wrap;
     align-content: space-around;
 }
+#fieldset-playlists {
+    min-height: 80vh;
+}
 
 #newSongForm {
     display: none;
@@ -33,6 +36,11 @@ input[type="submit"] {
     border-radius: 1em;
     line-height: 1.4em;
 }
+
+input[type="text"],
+input[type="password"]{
+height: 2em;
+}
 label {
     font-size: 1.2em;
 
@@ -49,14 +57,12 @@ label {
 form{
     display: grid;
     grid-template-columns: 1fr 3fr;
-    margin: 0 auto;
+    margin: 2em auto;
 }
 input{
     margin-bottom: 1.5em;
 }
-#logout {
-    /* align-self: center; */
-}
+
 ul {
     width: -webkit-fill-available;
 }
