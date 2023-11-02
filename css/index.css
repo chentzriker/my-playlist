@@ -3,8 +3,7 @@ body {
     font-size: larger;
     background-image: url("../media/background.jpg");
 }
-
-legend {
+legend, h2 {
     color: white;
     text-shadow: 1px 1px 2px rgb(158, 33, 197), 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -12,7 +11,7 @@ legend {
 fieldset {
     margin: 3em auto;
     border-color: #9db2bf;
-    background-color: #9DB2BF;
+    background-color: #9db2bf;
     width: 50vw;
     border-radius: 1em;
     display: flex;
@@ -36,7 +35,6 @@ h2 {
 
 button,
 input[type="submit"] {
-
     width: 15vw;
     font-size: 1.2em;
     border-radius: 1em;
