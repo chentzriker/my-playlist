@@ -85,7 +85,7 @@ function editSong(e) {
             li.innerHTML = ""
         }
         else {
-            alert("could not edit song")
+            alert("this feature is still in development. stay tuned!")
         }
     }
     console.log('parseInt(location.hash.slice(1)): ', parseInt(location.hash.slice(1)));

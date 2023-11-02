@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link href="./css/index.css" rel="stylesheet"/>
+    <link href="./css/index.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my playlist</title>
@@ -17,9 +17,8 @@
             </legend>
             <label for="Username">Username - email</label> <br>
             <input type="text" id="Username"> <br>
-            <lable for="Password">Password</lable> <br>
+            <label for="Password">Password</label> <br>
             <input type="password" id="Password"> <br>
-            <!-- we need to replace the onclick with eventLisener click -->
             <button class="movePage" onclick="login()">log in</button> <br>
             <h4 id="timeout"></h4>
             <a onclick="showContent(1)">I am not signed yet</a>
@@ -34,9 +33,9 @@
             <label for="username">Username-email</label><br>
             <input type="text" id="Username" name="Username" autocomplete="username"><br><br>
             <!-- <div class="tooltip"> -->
-                <label for="password">Password</label><br>
-                <input type="password" id="Password" name="Password" autocomplete="new-password"><br><br>
-                <!-- <p class="tooltiptext">Password should contain: <br> 1. at least one uppercase letter <br> 2.at
+            <label for="password">Password</label><br>
+            <input type="password" id="Password" name="Password" autocomplete="new-password"><br><br>
+            <!-- <p class="tooltiptext">Password should contain: <br> 1. at least one uppercase letter <br> 2.at
                     least one lowercase letter<br> 3.at least one digit <br> 4.should be more than 4 character</p>
             </div> -->
             <label for="confirm">Confirm password</label><br>
@@ -46,8 +45,12 @@
         </fieldset>
     </template>
     <template id="playlist">
-        <fieldset>
-            <form onsubmit="addSongToUserPlaylist()"  id="newSongForm" method="POST">
+        <fieldset id="fieldset-playlists">
+            
+            <h2>your playlist:</h2>
+            <ul id="playlist-container">
+            </ul>
+            <form onsubmit="addSongToUserPlaylist()" id="newSongForm" method="POST">
                 <label for="title">title:</label>
                 <input type="text" name="title" id="title">
                 <label for="artist">artist:</label>
@@ -57,13 +60,9 @@
                 <input type="submit" value="add!">
             </form>
             <div id="buttonsContainer">
+                <button id="logout" class="movePage" onclick="logOut()">log out</button>
                 <button id="addSong" class="addSong" onclick="showSongForm()">add song</button>
-                <button id="showPlaylist" onclick="loadPlaylist()">show my playlist</button>
             </div>
-                <h2>your playlist:</h2>
-            <ul id="playlist-container">
-            </ul>
-            <button id="logout" class="movePage" onclick="logOut()">log out</button>
 
         </fieldset>
     </template>

@@ -27,8 +27,8 @@ class DataBase {
     getUserId(name, password) {
         //finds the user and returns its id.
         const USERS = this.getUsers();
-        for(let user of USERS) {
-            if(user.name === name && user.password === password) {
+        for (let user of USERS) {
+            if (user.name === name && user.password === password) {
                 return user.id;
             }
         }
@@ -58,23 +58,20 @@ class DataBase {
         }
         return 404
     }
+
     getSongsListById(id) {
-        console.log("inside DATABASE");
-        console.log('id: ', id);
         this.playlists = JSON.parse(localStorage.getItem("playlists"));
-        console.log('this.playlists: ', this.playlists);
         for (let playlist of this.playlists) {
-            console.log('playlist.userId: ', playlist.userId);
-            console.log('id: ', id);
             if (playlist.userId === parseInt(id)) {
-                console.log("hi");
+                if (playlist.songs.length === 0){
+                    return 404;
+                }
                 return playlist.songs;
             }
         }
-
-        console.log("oops")
         return 404;
     }
+
     getPlaylistObj(id) {
         for (let playlist of this.playlists) {
             if (playlist.userId === parseInt(id)) {
